@@ -61,17 +61,18 @@ let increment_arrondissement = 0;
 
   page.on('dialog', async dialog => {
     console.log(`${increment_arrondissement}...`);
-    if(increment_arrondissement >= ARRONDISSEMENT_LENGTH - 1) {
+    if (increment_arrondissement >= (ARRONDISSEMENT_LENGTH - 1)) {
       browser.close();
+    } else {
+      dialog.accept()
+      myFunc();
     }
-    dialog.accept()
-    increment_arrondissement++;
-    myFunc();
   });
-
+  
   var myFunc = async () => {
     console.log(increment_arrondissement);
     await page.select(SELECT_ARRONDISSEMENT, ARRONDISSMENTS_VALUES[increment_arrondissement]);
+    increment_arrondissement++;
   };
 
 
